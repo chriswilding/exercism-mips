@@ -1,0 +1,23 @@
+.globl is_leap_year
+
+is_leap_year:
+        li      $t0, 0
+        li      $t1, 400
+        div     $a0, $t1
+        mfhi    $t1
+        beq     $t0, $t1, true
+        li      $t1, 100
+        div     $a0, $t1
+        mfhi    $t1
+        slt     $t1, $t0, $t1
+        li      $t2, 4
+        div     $a0, $t2
+        mfhi    $t2
+        slt     $t2, $t0, $t2
+        xor     $t3, $t1, $t2
+        move    $v0, $t3
+        jr      $ra
+
+true:
+        li      $v0, 1
+        jr      $ra
